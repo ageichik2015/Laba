@@ -1,0 +1,41 @@
+
+
+<!doctype html>
+<html>
+
+  <head> 
+    <link rel="stylesheet" href="piz.css" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title> Агейчик </title> 
+	<script type="text/javascript">
+  function getAddress(){
+    var request;
+	if (window.XMLHttpRequest) {
+      request= new XMLHttpRequest ();
+	} else {
+	  request= new ActiveXObject ("Microsoft.XMLHTTP");
+	}
+	request.onreadystatechange = function () {
+	  if (request.readyState==4 && request.status===200) {
+	    document.getElementById("address").value=request.responseText; 
+	  }
+	};
+	var phone=document.getElementById("phone").value;
+	request.open("POST", "new1.jsp?phone="+phone, true);
+	request.send();
+	}
+</script>
+  </head>
+  
+<body>
+<img src="Pizza.png" width="150" height="90" align="center">
+<h1>ПИЦЦЕРИЯ</h1>
+
+    <form action="new1.jsp" meyhod="get">
+	Телефон:<input  type="text" class="z1" id="phone" name="phone" onchange="getAddress()"/> <br>
+    Заказ: <textarea  rows="5" id="order" name="order"></textarea> <br>
+	Адрес: <textarea rows="5" id="address" name="address"></textarea> <br>
+	<input class="cn" type="submit" value="Сделать заказ" id="zakaz">
+	</form>
+</body>
+</html>
